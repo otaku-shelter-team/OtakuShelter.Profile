@@ -1,5 +1,5 @@
 database:
-  host: profile.otaku-shelter.ru
+  host: database.otaku-shelter.ru
   port: 5432
   database: profile
   userid: profile

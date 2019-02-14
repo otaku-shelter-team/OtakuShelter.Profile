@@ -1,26 +1,29 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+
 using Phema.Routing;
+
 using Swashbuckle.AspNetCore.Swagger;
 
 namespace OtakuShelter.Profile
 {
-    public static class ProfileWebServices
-    {
-        public static IServiceCollection AddWebServices(
-			this IServiceCollection services,
-			ProfileWebConfiguration configuration)
+	public static class ProfileWebServices
+	{
+		public static IServiceCollection AddWebServices(
+		this IServiceCollection services,
+		ProfileWebConfiguration configuration)
 		{
 			services.AddMvcCore()
 				.AddJsonFormatters()
-				.AddAuthorization(options => 
+				.AddAuthorization(options =>
 					options.AddPolicy("admin", builder => builder.RequireRole("admin")))
 				.AddApiExplorer()
 				.AddPhemaRouting(routing => routing.AddProfilesController())
@@ -46,11 +49,11 @@ namespace OtakuShelter.Profile
 						ValidAudience = configuration.Audience
 					};
 				});
-			
+
 			services.AddSwaggerGen(options =>
 			{
 				options.SwaggerDoc("v1", new Info {Title = "OtakuShelter Profile API", Version = "v1"});
-				
+
 				options.AddSecurityDefinition("Bearer", new ApiKeyScheme
 				{
 					Description = "JWT Authorization header",
@@ -58,13 +61,13 @@ namespace OtakuShelter.Profile
 					In = "header",
 					Type = "apiKey"
 				});
-				
+
 				options.AddSecurityRequirement(new Dictionary<string, IEnumerable<string>>
 				{
 					["Bearer"] = Enumerable.Empty<string>()
 				});
 			});
-			
+
 			return services;
 		}
 
@@ -78,5 +81,5 @@ namespace OtakuShelter.Profile
 					.Migrate();
 			}
 		}
-    }
+	}
 }

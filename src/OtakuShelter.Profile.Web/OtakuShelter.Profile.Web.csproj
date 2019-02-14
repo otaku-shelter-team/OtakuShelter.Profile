@@ -24,11 +24,4 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="4.0.1" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Profiles\ViewModels\Admin\Delete" />
-    <Folder Include="Profiles\ViewModels\Admin\Read" />
-    <Folder Include="Profiles\ViewModels\Admin\ReadById" />
-    <Folder Include="Profiles\ViewModels\Admin\Update" />
-  </ItemGroup>
-
 </Project>
