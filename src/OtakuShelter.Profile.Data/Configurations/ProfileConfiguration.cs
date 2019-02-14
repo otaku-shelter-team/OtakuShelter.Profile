@@ -25,8 +25,8 @@ namespace OtakuShelter.Profile.Configurations
 				.HasColumnName("nickname")
 				.IsRequired();
 
-			builder.Property(p => p.CreatedDateTimeUtc)
-				.HasColumnName("createddatetimeutc")
+			builder.Property(p => p.Created)
+				.HasColumnName("created")
 				.IsRequired();
 		}
 	}

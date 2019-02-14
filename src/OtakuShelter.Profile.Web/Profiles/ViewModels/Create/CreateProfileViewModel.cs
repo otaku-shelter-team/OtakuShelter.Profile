@@ -16,7 +16,7 @@ namespace OtakuShelter.Profile
 			{
 				Nickname = Nickname,
 				AccountId = accountId,
-				CreatedDateTimeUtc = DateTime.UtcNow
+				Created = DateTime.UtcNow
 			};
 
 			await context.Profiles.AddAsync(profile);

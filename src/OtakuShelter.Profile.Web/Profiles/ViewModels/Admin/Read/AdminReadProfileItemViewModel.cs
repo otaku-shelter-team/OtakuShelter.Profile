@@ -11,7 +11,7 @@ namespace OtakuShelter.Profile
 			Id = profile.Id;
 			AccountId = profile.AccountId;
 			Nickname = profile.Nickname;
-			CreatedDateTimeUtc = profile.CreatedDateTimeUtc;
+			Created = profile.Created;
 		}
 
 		[DataMember(Name = "id")]
@@ -23,7 +23,7 @@ namespace OtakuShelter.Profile
 		[DataMember(Name = "nickname")]
 		public string Nickname { get; }
 		
-		[DataMember(Name = "createdDateTimeUtc")]
-		public DateTime CreatedDateTimeUtc { get; }
+		[DataMember(Name = "created")]
+		public DateTime Created { get; }
 	}
 }

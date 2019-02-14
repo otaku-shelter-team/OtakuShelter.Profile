@@ -16,7 +16,7 @@ namespace OtakuShelter.Profile
 		public async Task Load(ProfileContext context, int offset, int limit)
 		{
 			Profiles = await context.Profiles
-				.OrderByDescending(p => p.CreatedDateTimeUtc)
+				.OrderByDescending(p => p.Created)
 				.Skip(offset)
 				.Take(limit)
 				.Select(p => new AdminReadProfileItemViewModel(p))

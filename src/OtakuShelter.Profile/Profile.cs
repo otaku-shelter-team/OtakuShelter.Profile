@@ -7,6 +7,6 @@ namespace OtakuShelter.Profile
 		public int Id { get; set; }
 		public int AccountId { get; set; }
 		public string Nickname { get; set; }
-		public DateTime CreatedDateTimeUtc { get; set; }
+		public DateTime Created { get; set; }
 	}
 }

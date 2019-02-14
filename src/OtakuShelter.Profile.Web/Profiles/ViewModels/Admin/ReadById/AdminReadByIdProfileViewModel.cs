@@ -15,8 +15,8 @@ namespace OtakuShelter.Profile
 		[DataMember(Name = "nickname")]
 		public string Nickname { get; private set; }
 		
-		[DataMember(Name = "createdDateTimeUtc")]
-		public DateTime CreatedDateTimeUtc { get; private set; }
+		[DataMember(Name = "created")]
+		public DateTime Created { get; private set; }
 		
 		public async Task Load(ProfileContext context, int profileId)
 		{
@@ -24,7 +24,7 @@ namespace OtakuShelter.Profile
 
 			AccountId = profile.AccountId;
 			Nickname = profile.Nickname;
-			CreatedDateTimeUtc = profile.CreatedDateTimeUtc;
+			Created = profile.Created;
 		}
 	}
 }
