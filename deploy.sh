@@ -1,4 +1,5 @@
-echo "ansible-playbook deploy.yml \
+echo "cd /root/OtakuShelter.Infrastructure/src && \
+ansible-playbook deploy.yml \
 -e \"\
 otakushelter_hosts=profiles \
 otakushelter_container=otakushelter_profile \
