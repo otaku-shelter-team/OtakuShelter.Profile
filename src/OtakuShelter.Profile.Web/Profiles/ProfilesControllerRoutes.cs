@@ -4,7 +4,7 @@ namespace OtakuShelter.Profile
 {
 	public static class ProfilesControllerRoutes
 	{
-		public static IRoutingBuilder AddProfilesController(this IRoutingBuilder builder)
+		public static IRoutingBuilder AddProfilesController(this IRoutingBuilder builder, ProfileRoleConfiguration roles)
 		{
 			builder.AddController<ProfilesController>(controller =>
 			{
@@ -30,20 +30,20 @@ namespace OtakuShelter.Profile
 
 				controller.AddRoute("admin/profiles", c => c.AdminRead(From.Query<FilterViewModel>()))
 					.HttpGet()
-					.Authorize("admin");
+					.Authorize(roles.Admin);
 
 				controller.AddRoute("admin/profiles/{profileId}", c => c.AdminReadById(From.Route<int>()))
 					.HttpGet()
-					.Authorize("admin");
+					.Authorize(roles.Admin);
 
 				controller.AddRoute("admin/profiles/{profileId}",
 						c => c.AdminUpdateById(From.Body<AdminUpdateByIdProfileViewModel>(), From.Route<int>()))
 					.HttpPut()
-					.Authorize("admin");
+					.Authorize(roles.Admin);
 
 				controller.AddRoute("admin/profiles/{profileId}", c => c.AdminDeleteById(From.Route<AdminDeleteByIdProfileViewModel>()))
 					.HttpDelete()
-					.Authorize("admin");
+					.Authorize(roles.Admin);
 			});
 
 			return builder;
