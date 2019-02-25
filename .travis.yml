@@ -15,6 +15,11 @@ script:
 - docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD
 - docker push otakushelter/profile:1.0.$TRAVIS_BUILD_NUMBER
 
+
 deploy:
-- sudo chmod +x ./deploy.sh
-- ./deploy.sh | sudo sshpass -p $ANSIBLE_PASSWORD ssh -o StrictHostKeyChecking=no $ANSIBLE_CONNECTION
+  provider: script
+  script: 
+  - sudo chmod +x ./deploy.sh
+  - ./deploy.sh | sudo sshpass -p $ANSIBLE_PASSWORD ssh -o StrictHostKeyChecking=no $ANSIBLE_CONNECTION
+  on:
+    branch: master
