@@ -1,9 +1,0 @@
-version: '3.1'
-services:
-  profile-service:
-    image: "otakushelter/profile:1.0.${TRAVIS_BUILD_NUMBER}"
-    build:
-      context: .
-      dockerfile: src/OtakuShelter.Profile.Web/Dockerfile
-    ports:
-    - 80:80

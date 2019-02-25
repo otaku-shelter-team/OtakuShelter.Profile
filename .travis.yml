@@ -11,7 +11,7 @@ addons:
     - sshpass
 
 script:
-- docker-compose build
+- docker build -t otakushelter/profile:1.0.${TRAVIS_BUILD_NUMBER} -f src/OtakuShelter.Profile.Web/Dockerfile .
 - docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD
 - docker push otakushelter/profile:1.0.$TRAVIS_BUILD_NUMBER
 - |
