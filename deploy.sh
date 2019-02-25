@@ -1,4 +1,5 @@
-echo "cd /root/OtakuShelter.Infrastructure/src && \
+sudo sshpass -p $ANSIBLE_PASSWORD ssh -o StrictHostKeyChecking=no $ANSIBLE_CONNECTION \
+"cd /root/OtakuShelter.Infrastructure/src && \
 ansible-playbook deploy.yml \
 -e \"\
 otakushelter_hosts=profiles \

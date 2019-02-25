@@ -16,7 +16,6 @@ script:
 - docker push otakushelter/profile:1.0.$TRAVIS_BUILD_NUMBER
 
 deploy:
+  skip_cleanup: true
   provider: script
-  script: 
-  - sudo chmod +x ./deploy.sh
-  - ./deploy.sh | sudo sshpass -p $ANSIBLE_PASSWORD ssh -o StrictHostKeyChecking=no $ANSIBLE_CONNECTION
+  script: deploy.sh
