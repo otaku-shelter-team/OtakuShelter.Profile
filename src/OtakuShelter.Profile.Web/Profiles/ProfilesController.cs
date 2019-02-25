@@ -13,81 +13,81 @@ namespace OtakuShelter.Profile
 			this.context = context;
 		}
 
-		public async Task Create(CreateProfileViewModel model)
+		public async ValueTask Create(CreateProfileRequest request)
 		{
 			var accountId = int.Parse(User.Identity.Name);
 
-			await model.Create(context, accountId);
+			await request.Create(context, accountId);
 
 			await context.SaveChangesAsync();
 		}
 
-		public async Task<ReadProfileViewModel> Read()
-		{
-			var accountId = int.Parse(User.Identity.Name);
-			
-			var model = new ReadProfileViewModel();
-
-			await model.Load(context, accountId);
-
-			return model;
-		}
-
-		public async Task<ReadByIdProfileViewModel> ReadById(int accountId)
-		{
-			var model = new ReadByIdProfileViewModel();
-
-			await model.ReadById(context, accountId);
-
-			return model;
-		}
-
-		public async Task Update(UpdateProfileViewModel model)
+		public async ValueTask<ReadProfileResponse> Read()
 		{
 			var accountId = int.Parse(User.Identity.Name);
 			
-			await model.Update(context, accountId);
+			var response = new ReadProfileResponse();
+
+			await response.Load(context, accountId);
+
+			return response;
+		}
+
+		public async ValueTask<ReadByIdProfileResponse> ReadById(int accountId)
+		{
+			var response = new ReadByIdProfileResponse();
+
+			await response.ReadById(context, accountId);
+
+			return response;
+		}
+
+		public async ValueTask Update(UpdateProfileRequest request)
+		{
+			var accountId = int.Parse(User.Identity.Name);
+			
+			await request.Update(context, accountId);
 
 			await context.SaveChangesAsync();
 		}
 
-		public async Task Delete(DeleteProfileViewModel model)
+		public async ValueTask Delete(DeleteProfileRequest request)
 		{
 			var accountId = int.Parse(User.Identity.Name);
 
-			await model.Delete(context, accountId);
+			await request.Delete(context, accountId);
 
 			await context.SaveChangesAsync();
 		}
 
-		public async Task<AdminReadProfileViewModel> AdminRead(FilterViewModel filter)
+		public async ValueTask<AdminReadProfileResponse> AdminRead(FilterRequest filter)
 		{
-			var model = new AdminReadProfileViewModel();
+			var response = new AdminReadProfileResponse();
 
-			await model.Load(context, filter.Offset, filter.Limit);
+			await response.Load(context, filter.Offset, filter.Limit);
 
-			return model;
+			return response;
 		}
 
-		public async Task<AdminReadByIdProfileViewModel> AdminReadById(int profileId)
+		public async ValueTask<AdminReadByIdProfileResponse> AdminReadById(int profileId)
 		{
-			var model = new AdminReadByIdProfileViewModel();
+			var response = new AdminReadByIdProfileResponse();
 
-			await model.Load(context, profileId);
+			await response.Load(context, profileId);
 
-			return model;
+			return response;
 		}
 
-		public async Task AdminUpdateById(AdminUpdateByIdProfileViewModel model, int profileId)
+		public async ValueTask AdminUpdateById(AdminUpdateByIdProfileRequest request, int profileId)
 		{
-			await model.Update(context, profileId);
+			await request.Update(context, profileId);
 
 			await context.SaveChangesAsync();
 		}
 
-		public async Task AdminDeleteById(AdminDeleteByIdProfileViewModel model)
+		public async ValueTask AdminDeleteById(AdminDeleteByIdProfileRequest request)
 		{
-			await model.Delete(context);
+			await request.Delete(context);
 
 			await context.SaveChangesAsync();
 		}

@@ -5,12 +5,12 @@ using System.Threading.Tasks;
 namespace OtakuShelter.Profile
 {
 	[DataContract]
-	public class CreateProfileViewModel
+	public class CreateProfileRequest
 	{
 		[DataMember(Name = "nickname")]
 		public string Nickname { get; set; }
 
-		public async Task Create(ProfileContext context, int accountId)
+		public async ValueTask Create(ProfileContext context, int accountId)
 		{
 			var profile = new Profile
 			{

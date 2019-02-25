@@ -6,12 +6,12 @@ using Microsoft.EntityFrameworkCore;
 namespace OtakuShelter.Profile
 {
 	[DataContract]
-	public class UpdateProfileViewModel
+	public class UpdateProfileRequest
 	{
 		[DataMember(Name = "nickname")]
 		public string Nickname { get; set; }
 
-		public async Task Update(ProfileContext context, int accountId)
+		public async ValueTask Update(ProfileContext context, int accountId)
 		{
 			var profile = await context.Profiles.FirstAsync(p => p.AccountId == accountId);
 

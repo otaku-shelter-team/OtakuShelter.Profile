@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 namespace OtakuShelter.Profile
 {
 	[DataContract]
-	public class AdminReadByIdProfileViewModel
+	public class AdminReadByIdProfileResponse
 	{
 		[DataMember(Name = "accountId")]
 		public int AccountId { get; private set; }
@@ -18,7 +18,7 @@ namespace OtakuShelter.Profile
 		[DataMember(Name = "created")]
 		public DateTime Created { get; private set; }
 		
-		public async Task Load(ProfileContext context, int profileId)
+		public async ValueTask Load(ProfileContext context, int profileId)
 		{
 			var profile = await context.Profiles.FirstAsync(p => p.Id == profileId);
 

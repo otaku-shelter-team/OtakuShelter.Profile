@@ -4,9 +4,9 @@ using System.Runtime.Serialization;
 namespace OtakuShelter.Profile
 {
 	[DataContract]
-	public class AdminReadProfileItemViewModel
+	public class AdminReadProfileItemResponse
 	{
-		public AdminReadProfileItemViewModel(Profile profile)
+		public AdminReadProfileItemResponse(Profile profile)
 		{
 			Id = profile.Id;
 			AccountId = profile.AccountId;

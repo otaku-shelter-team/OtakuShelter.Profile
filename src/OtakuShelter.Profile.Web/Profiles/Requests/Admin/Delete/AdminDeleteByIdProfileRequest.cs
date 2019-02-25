@@ -6,12 +6,12 @@ using Microsoft.EntityFrameworkCore;
 namespace OtakuShelter.Profile
 {
 	[DataContract]
-	public class AdminDeleteByIdProfileViewModel
+	public class AdminDeleteByIdProfileRequest
 	{
 		[DataMember(Name = "profileId")]
 		public int ProfileId { get; set; }
 		
-		public async Task Delete(ProfileContext context)
+		public async ValueTask Delete(ProfileContext context)
 		{
 			var profile = await context.Profiles.FirstAsync(p => p.Id == ProfileId);
 

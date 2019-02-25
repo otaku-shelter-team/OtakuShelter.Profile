@@ -1,4 +1,3 @@
-using System;
 using System.Runtime.Serialization;
 using System.Threading.Tasks;
 
@@ -7,20 +6,16 @@ using Microsoft.EntityFrameworkCore;
 namespace OtakuShelter.Profile
 {
 	[DataContract]
-	public class ReadProfileViewModel
+	public class ReadByIdProfileResponse
 	{
 		[DataMember(Name = "nickname")]
-		public string Nickname { get; set; }
+		public string Nickname { get; private set; }
 
-		[DataMember(Name = "created")]
-		public DateTime Created { get; set; }
-
-		public async Task Load(ProfileContext context, int accountId)
+		public async ValueTask ReadById(ProfileContext context, int accountId)
 		{
 			var profile = await context.Profiles.FirstAsync(p => p.AccountId == accountId);
 
 			Nickname = profile.Nickname;
-			Created = profile.Created;
 		}
 	}
 }

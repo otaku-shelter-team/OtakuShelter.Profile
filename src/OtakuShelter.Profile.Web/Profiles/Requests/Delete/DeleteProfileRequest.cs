@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace OtakuShelter.Profile
 {
-	public class DeleteProfileViewModel
+	public class DeleteProfileRequest
 	{
-		public async Task Delete(ProfileContext context, int accountId)
+		public async ValueTask Delete(ProfileContext context, int accountId)
 		{
 			var profile = await context.Profiles.FirstAsync(p => p.AccountId == accountId);
 

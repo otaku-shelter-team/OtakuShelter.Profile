@@ -8,18 +8,18 @@ using Microsoft.EntityFrameworkCore;
 namespace OtakuShelter.Profile
 {
 	[DataContract]
-	public class AdminReadProfileViewModel
+	public class AdminReadProfileResponse
 	{
 		[DataMember(Name = "profiles")]
-		public ICollection<AdminReadProfileItemViewModel> Profiles { get; private set; }
+		public ICollection<AdminReadProfileItemResponse> Profiles { get; private set; }
 
-		public async Task Load(ProfileContext context, int offset, int limit)
+		public async ValueTask Load(ProfileContext context, int offset, int limit)
 		{
 			Profiles = await context.Profiles
 				.OrderByDescending(p => p.Created)
 				.Skip(offset)
 				.Take(limit)
-				.Select(p => new AdminReadProfileItemViewModel(p))
+				.Select(p => new AdminReadProfileItemResponse(p))
 				.ToListAsync();
 		}
 	}

@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 namespace OtakuShelter.Profile
 {
 	[DataContract]
-	public class FilterViewModel
+	public class FilterRequest
 	{
 		[DataMember(Name = "offset")]
 		public int Offset { get; set; }
