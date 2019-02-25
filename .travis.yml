@@ -4,11 +4,17 @@ cache: false
 sudo: required
 language: bash
 services: docker
-install:
-- sudo apt-get install sshpass
+
+addons:
+  apt:
+    packages:
+    - sshpass
+
 script:
 - docker-compose build
 - docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD
 - docker push otakushelter/profile:1.0.$TRAVIS_BUILD_NUMBER
+
+deploy:
 - sudo chmod +x ./deploy.sh
 - ./deploy.sh | sudo sshpass -p $ANSIBLE_PASSWORD ssh -o StrictHostKeyChecking=no $ANSIBLE_CONNECTION
