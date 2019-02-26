@@ -14,11 +14,11 @@ namespace OtakuShelter.Profile.Configurations
 				.UseNpgsqlIdentityColumn();
 
 			builder.Property(p => p.AccountId)
-				.HasColumnName("accountid")
+				.HasColumnName("account_id")
 				.IsRequired();
 
 			builder.HasIndex(p => p.AccountId)
-				.HasName("UQ_accountid")
+				.HasName("UQ_account_id")
 				.IsUnique();
 
 			builder.Property(p => p.Nickname)

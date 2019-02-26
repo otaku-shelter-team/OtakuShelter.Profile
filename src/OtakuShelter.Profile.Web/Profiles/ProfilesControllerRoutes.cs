@@ -16,7 +16,7 @@ namespace OtakuShelter.Profile
 					.HttpGet()
 					.Authorize();
 
-				controller.AddRoute("profiles/{accountId}", c => c.ReadById(From.Route<int>()))
+				controller.AddRoute("{accountId}/profiles", c => c.ReadById(From.Route<int>()))
 					.HttpGet()
 					.Authorize();
 
