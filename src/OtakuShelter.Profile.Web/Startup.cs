@@ -25,6 +25,7 @@ namespace OtakuShelter.Profile
 				.AddMvcServices(configuration.Roles)
 				.AddAuthenticationServices(configuration)
 				.AddSwaggerServices()
+				.AddHealthServices(configuration.Database)
 				.BuildServiceProvider();
 		}
 
@@ -32,6 +33,8 @@ namespace OtakuShelter.Profile
 		{
 			app.EnsureDatabaseMigrated();
 
+			app.UseHealthChecks("/health");
+			
 			app.UseAuthentication();
 
 			app.UseSwagger();
@@ -39,7 +42,7 @@ namespace OtakuShelter.Profile
 			{
 				options.SwaggerEndpoint("v1/swagger.json", "OtakuShelter Profile API v1");
 				options.DocumentTitle = "OtakuShelter Profile API";
-				options.DocExpansion(DocExpansion.None);
+				options.DocExpansion(DocExpansion.List);
 			});
 
 			app.UseMvc();
