@@ -15,11 +15,6 @@ namespace OtakuShelter.Profile
 			this.context = context;
 		}
 
-		public string Throw(string message)
-		{
-			throw new InvalidOperationException();
-		}
-		
 		public async ValueTask Create(CreateProfileRequest request)
 		{
 			var accountId = int.Parse(User.Identity.Name);

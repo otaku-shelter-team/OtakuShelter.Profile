@@ -8,9 +8,6 @@ namespace OtakuShelter.Profile
 		{
 			builder.AddController<ProfilesController>(controller =>
 			{
-				controller.AddRoute("throw", c => c.Throw(From.Query<string>()))
-					.HttpGet();
-				
 				controller.AddRoute("profiles", c => c.Create(From.Body<CreateProfileRequest>()))
 					.HttpPost()
 					.Authorize();
