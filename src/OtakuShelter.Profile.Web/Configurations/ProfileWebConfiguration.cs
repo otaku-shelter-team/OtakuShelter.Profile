@@ -1,7 +1,5 @@
 using System.Text;
-
 using Microsoft.IdentityModel.Tokens;
-
 using Phema.Configuration;
 
 namespace OtakuShelter.Profile
@@ -15,6 +13,7 @@ namespace OtakuShelter.Profile
 
 		public ProfileRoleConfiguration Roles { get; set; }
 		public ProfileContextConfiguration Database { get; set; }
+		public ProfileRabbitMqConfiguration RabbitMq { get; set; }
 
 		public SymmetricSecurityKey SymmetricSecurityKey => new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Secret));
 	}

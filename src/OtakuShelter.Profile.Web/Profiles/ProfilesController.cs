@@ -1,3 +1,4 @@
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 
 using Microsoft.AspNetCore.Mvc;
@@ -13,6 +14,11 @@ namespace OtakuShelter.Profile
 			this.context = context;
 		}
 
+		public string Throw(string message)
+		{
+			throw new ExternalException(message);
+		}
+		
 		public async ValueTask Create(CreateProfileRequest request)
 		{
 			var accountId = int.Parse(User.Identity.Name);

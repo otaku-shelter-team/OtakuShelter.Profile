@@ -26,6 +26,8 @@ namespace OtakuShelter.Profile
 				.AddAuthenticationServices(configuration)
 				.AddSwaggerServices()
 				.AddHealthServices(configuration.Database)
+				.AddRabbitMqServices(configuration.RabbitMq)
+				.AddExceptionHandlingServices()
 				.BuildServiceProvider();
 		}
 
