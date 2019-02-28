@@ -1,6 +1,8 @@
 using System;
+using System.Security.Principal;
 using System.Threading.Tasks;
 
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 
@@ -12,16 +14,19 @@ namespace OtakuShelter.Profile
 	public class ProfileExceptionHandler : IExceptionHandler<Exception>
 	{
 		private readonly IRabbitMqProducer<ErrorQueueMessage> producer;
+		private readonly IHttpContextAccessor accessor;
 
-		public ProfileExceptionHandler(IRabbitMqProducer<ErrorQueueMessage> producer)
+		public ProfileExceptionHandler(IRabbitMqProducer<ErrorQueueMessage> producer, IHttpContextAccessor accessor)
 		{
 			this.producer = producer;
+			this.accessor = accessor;
 		}
 		
 		public async ValueTask<IActionResult> Handle(Exception exception)
 		{
 			var message = new ErrorQueueMessage
 			{
+				TraceId = accessor.HttpContext.TraceIdentifier,
 				Type = exception.GetType().ToString(),
 				Project = "profile",
 				Message = exception.Message,

@@ -10,8 +10,10 @@ namespace OtakuShelter.Profile
 	{
 		public static IServiceCollection AddExceptionHandlingServices(this IServiceCollection services)
 		{
+			
 			return services.AddPhemaExceptionHandling(options =>
-				options.AddExceptionHandler<Exception, ProfileExceptionHandler>(e => true));
+				options.AddExceptionHandler<Exception, ProfileExceptionHandler>(e => true))
+				.AddHttpContextAccessor();
 		}
 	}
 }
