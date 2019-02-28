@@ -1,3 +1,4 @@
+using System;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 
@@ -16,7 +17,7 @@ namespace OtakuShelter.Profile
 
 		public string Throw(string message)
 		{
-			throw new ExternalException(message);
+			throw new InvalidOperationException();
 		}
 		
 		public async ValueTask Create(CreateProfileRequest request)

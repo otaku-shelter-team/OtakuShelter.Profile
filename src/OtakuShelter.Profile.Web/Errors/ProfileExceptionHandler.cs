@@ -1,5 +1,7 @@
 using System;
+using System.Threading.Tasks;
 
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 
 using Phema.ExceptionHandling;
@@ -7,7 +9,7 @@ using Phema.RabbitMq;
 
 namespace OtakuShelter.Profile
 {
-	public class ProfileExceptionHandler : IExceptionHandler
+	public class ProfileExceptionHandler : IExceptionHandler<Exception>
 	{
 		private readonly IRabbitMqProducer<ErrorQueueMessage> producer;
 
@@ -16,18 +18,20 @@ namespace OtakuShelter.Profile
 			this.producer = producer;
 		}
 		
-		public void HandleException(ExceptionContext context)
+		public async ValueTask<IActionResult> Handle(Exception exception)
 		{
 			var message = new ErrorQueueMessage
 			{
-				Type = context.Exception.GetType().ToString(),
+				Type = exception.GetType().ToString(),
 				Project = "profile",
-				Message = context.Exception.Message,
-				StackTrace = context.Exception.StackTrace,
+				Message = exception.Message,
+				StackTrace = exception.StackTrace,
 				Created = DateTime.UtcNow
 			};
 
-			producer.Produce(message).GetAwaiter().GetResult();
+			await producer.Produce(message);
+			
+			return new BadRequestObjectResult(new {error = exception.Message});
 		}
 	}
 }

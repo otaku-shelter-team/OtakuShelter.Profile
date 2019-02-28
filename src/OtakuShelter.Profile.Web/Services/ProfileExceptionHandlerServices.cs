@@ -1,3 +1,5 @@
+using System;
+
 using Microsoft.Extensions.DependencyInjection;
 
 using Phema.ExceptionHandling;
@@ -9,7 +11,7 @@ namespace OtakuShelter.Profile
 		public static IServiceCollection AddExceptionHandlingServices(this IServiceCollection services)
 		{
 			return services.AddPhemaExceptionHandling(options =>
-				options.AddExceptionHandler<ProfileExceptionHandler>(e => true));
+				options.AddExceptionHandler<Exception, ProfileExceptionHandler>(e => true));
 		}
 	}
 }

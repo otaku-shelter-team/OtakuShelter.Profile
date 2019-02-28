@@ -6,8 +6,6 @@ namespace OtakuShelter.Profile
 {
 	public static class ProfileRabbitMqServices
 	{
-		private const string ErrorsQueueName = "errors";
-		
 		public static IServiceCollection AddRabbitMqServices(
 			this IServiceCollection services,
 			ProfileRabbitMqConfiguration configuration)
@@ -24,16 +22,8 @@ namespace OtakuShelter.Profile
 					options.VirtualHost = configuration.VirtualHost;
 				});
 			
-			builder.AddQueues(options => 
-				options.AddQueue(ErrorsQueueName)
-					.Durable());
-
-			builder.AddExchanges(options =>
-				options.AddDirectExchange("amq.direct")
-					.Durable());
-			
 			builder.AddProducers(options =>
-				options.AddProducer<ErrorQueueMessage>("amq.direct", ErrorsQueueName)
+				options.AddProducer<ErrorQueueMessage>("amq.direct", "errors")
 					.Mandatory());
 			
 			return services;
