@@ -36,7 +36,7 @@ namespace OtakuShelter.Profile
 
 			await producer.Produce(message);
 			
-			return new BadRequestObjectResult(new {error = exception.Message});
+			return new BadRequestObjectResult(new {traceId = message.TraceId});
 		}
 	}
 }
