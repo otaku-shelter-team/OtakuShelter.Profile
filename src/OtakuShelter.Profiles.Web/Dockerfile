@@ -6,4 +6,4 @@ RUN dotnet publish -c Release -o artifacts
 FROM microsoft/dotnet:2.2-aspnetcore-runtime AS runtime
 WORKDIR /otakushelter/profiles/service
 COPY --from=build /otakushelter/profiles/service/src/OtakuShelter.Profiles.Web/artifacts ./
-ENTRYPOINT ["dotnet", "OtakuShelter.Profile.Web.dll"] 
+ENTRYPOINT ["dotnet", "OtakuShelter.Profiles.Web.dll"] 
