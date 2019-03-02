@@ -34,8 +34,8 @@ namespace OtakuShelter.Profiles
 		public void Configure(IApplicationBuilder app)
 		{
 			app.EnsureDatabaseMigrated();
-			
-			app.UseHealthChecks("/health");
+
+			app.UseReviewsHealthchecks();
 			app.UseAuthentication();
 			app.UseProfilesSwagger();
 			app.UseMvc();

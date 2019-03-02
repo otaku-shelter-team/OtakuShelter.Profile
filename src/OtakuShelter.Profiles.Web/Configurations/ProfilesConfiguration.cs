@@ -3,6 +3,7 @@ namespace OtakuShelter.Profiles
 	public class ProfilesConfiguration
 	{
 		public string Name { get; set; }
+		public string Version { get; set; }
 		
 		public ProfilesDatabaseConfiguration Database { get; set; }
 		public ProfilesJwtConfiguration Jwt { get; set; }
