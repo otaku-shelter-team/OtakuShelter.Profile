@@ -11,9 +11,9 @@ addons:
     - sshpass
 
 script:
-- docker build -t otakushelter/profile:1.0.${TRAVIS_BUILD_NUMBER} -f src/OtakuShelter.Profile.Web/Dockerfile .
+- docker build -t otakushelter/profiles:1.0.${TRAVIS_BUILD_NUMBER} -f src/OtakuShelter.Profile.Web/Dockerfile .
 - docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD
-- docker push otakushelter/profile:1.0.$TRAVIS_BUILD_NUMBER
+- docker push otakushelter/profiles:1.0.$TRAVIS_BUILD_NUMBER
 - |
   sudo sshpass -p $ANSIBLE_PASSWORD ssh -o StrictHostKeyChecking=no $ANSIBLE_CONNECTION \
   "cd /root/OtakuShelter.Infrastructure/src && \
