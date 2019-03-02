@@ -35,7 +35,7 @@ namespace OtakuShelter.Profiles
 		{
 			app.EnsureDatabaseMigrated();
 
-			app.UseReviewsHealthchecks();
+			app.UseProfilesHealthchecks();
 			app.UseAuthentication();
 			app.UseProfilesSwagger();
 			app.UseMvc();

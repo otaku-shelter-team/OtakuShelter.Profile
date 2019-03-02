@@ -20,7 +20,7 @@ namespace OtakuShelter.Profiles
 			return services;
 		}
 		
-		public static IApplicationBuilder UseReviewsHealthchecks(this IApplicationBuilder app)
+		public static IApplicationBuilder UseProfilesHealthchecks(this IApplicationBuilder app)
 		{
 			return app.UseHealthChecks("/health", new HealthCheckOptions
 			{
